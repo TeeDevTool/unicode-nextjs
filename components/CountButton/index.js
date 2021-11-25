@@ -1,0 +1,84 @@
+import { useState } from "react";
+
+// theme colors
+import colors from "styles/scss/_themes-vars.module.scss";
+import { increment, decrement, mouseOut, mouseOver } from "config/static";
+
+const CountButton = (props) => {
+  const { container, containerHover, black, grey } = colors;
+  const { value, handleCounter, index } = props;
+  const [hover, setHover] = useState({ increment: false, decrement: false });
+
+  const setHoverState = (hoverKey, state) => {
+    setHover((getHoverState) => ({
+      ...getHoverState,
+      [hoverKey]: state,
+    }));
+  };
+
+  return (
+    <div>
+      <button
+        onMouseOver={() => setHoverState(decrement, mouseOver)}
+        onMouseOut={() => setHoverState(decrement, mouseOut)}
+        onClick={() => handleCounter(index, decrement)}
+        disabled={value === 1}
+        style={{
+          backgroundColor: hover.decrement ? containerHover : container,
+          color: grey,
+          borderRadius: "10px 0px 0px 10px",
+          padding: "3px 10px",
+          marginRight: -2,
+          border: "none",
+          fontSize: "17px",
+          fontStyle: "normal",
+          fontWeight: "normal",
+          letterSpacing: "-0.08px",
+          textAlign: "center",
+          alignItems: "center",
+        }}
+      >
+        -
+      </button>
+      <button
+        style={{
+          backgroundColor: container,
+          color: black,
+          padding: "4px 6px",
+          border: "none",
+          fontSize: "15px",
+          fontWeight: "bold",
+          letterSpacing: "-0.08px",
+          textAlign: "center",
+          alignItems: "center",
+        }}
+        disabled
+      >
+        {value}
+      </button>
+      <button
+        onMouseOver={() => setHoverState(increment, mouseOver)}
+        onMouseOut={() => setHoverState(increment, mouseOut)}
+        onClick={() => handleCounter(index, increment)}
+        style={{
+          backgroundColor: hover.increment ? containerHover : container,
+          color: grey,
+          borderRadius: "0px 10px 10px 0px",
+          padding: "3px 10px",
+          marginLeft: -2,
+          border: "none",
+          fontSize: "17px",
+          fontStyle: "normal",
+          fontWeight: "normal",
+          letterSpacing: "-0.08px",
+          textAlign: "center",
+          alignItems: "center",
+        }}
+      >
+        +
+      </button>
+    </div>
+  );
+};
+
+export default CountButton;

@@ -1,0 +1,32 @@
+$paper: #ffffff;
+
+$container: #f2f2f2;
+$containerHover: #e6e6e6;
+
+$red: #e92f48;
+$redHover: #b4293c;
+$redLight: #f2c9c9;
+$redLightHover: #f3acac;
+$redDark: #741c28;
+
+$grey: #7e8389;
+$black: #424242;
+$yellow: #ffc108;
+$silver: #a0a8b1;
+$bronze: #d97953;
+
+:export {
+  paper: $paper;
+  container: $container;
+  containerHover: $containerHover;
+  red: $red;
+  redHover: $redHover;
+  redLight: $redLight;
+  redLightHover: $redLightHover;
+  redDark: $redDark;
+  grey: $grey;
+  black: $black;
+  yellow: $yellow;
+  silver: $silver;
+  bronze: $bronze;
+}
