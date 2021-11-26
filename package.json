@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "CI='' next build",
     "export": "next export",
-    "deploy": "npm install && npm run build && npm run export",
+    "deploy": "npm run build && npm run export",
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
