@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 // theme colors
 import colors from "styles/scss/_themes-vars.module.scss";
+
+import { Context } from "context";
+import { handleCounter } from "config/action";
 import { increment, decrement, mouseOut, mouseOver } from "config/static";
 
 const CountButton = (props) => {
   const { container, containerHover, black, grey } = colors;
-  const { value, handleCounter, index } = props;
+  const { value, index } = props;
+  const { dispatch } = useContext(Context);
   const [hover, setHover] = useState({ increment: false, decrement: false });
 
   const setHoverState = (hoverKey, state) => {
@@ -21,7 +25,15 @@ const CountButton = (props) => {
       <button
         onMouseOver={() => setHoverState(decrement, mouseOver)}
         onMouseOut={() => setHoverState(decrement, mouseOut)}
-        onClick={() => handleCounter(index, decrement)}
+        onClick={() =>
+          dispatch({
+            type: handleCounter,
+            payload: {
+              index,
+              type: decrement,
+            },
+          })
+        }
         disabled={value === 1}
         style={{
           backgroundColor: hover.decrement ? containerHover : container,
@@ -59,7 +71,15 @@ const CountButton = (props) => {
       <button
         onMouseOver={() => setHoverState(increment, mouseOver)}
         onMouseOut={() => setHoverState(increment, mouseOut)}
-        onClick={() => handleCounter(index, increment)}
+        onClick={() =>
+          dispatch({
+            type: handleCounter,
+            payload: {
+              index,
+              type: increment,
+            },
+          })
+        }
         style={{
           backgroundColor: hover.increment ? containerHover : container,
           color: grey,

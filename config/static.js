@@ -1,3 +1,6 @@
+export const paddingLayout = 20;
+export const widthLayout = 375;
+
 export const increment = "increment";
 export const decrement = "decrement";
 

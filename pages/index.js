@@ -1,6 +1,6 @@
 // external modules
+import { memo } from "react";
 import Head from "next/head";
-import Link from "next/link";
 
 // internal modules
 import Button from "components/Button";
@@ -37,36 +37,30 @@ const Header = () => {
   );
 };
 
-const Menu = ({
-  description,
-  menu,
-  price,
-  image,
-  added,
-  valueAdd,
-  ...other
-}) => {
-  return (
-    <>
-      <div className="grid">
-        <div className="grid grid-left">
-          <ImageMenu name={menu} url={image} />
-          <div className="menu-detail">
-            <Typography type="menu">{menu}</Typography>
-            <Margin space={5} />
-            <Typography type="submenu1">{description}</Typography>
-            <Margin space={5} />
-            <CountButton {...other} />
+const Menu = memo(
+  ({ description, menu, price, image, added, valueAdd, ...other }) => {
+    return (
+      <>
+        <div className="grid">
+          <div className="grid grid-left">
+            <ImageMenu name={menu} url={image} />
+            <div className="menu-detail">
+              <Typography type="menu">{menu}</Typography>
+              <Margin space={5} />
+              <Typography type="submenu1">{description}</Typography>
+              <Margin space={5} />
+              <CountButton {...other} />
+            </div>
           </div>
+          <Button price={price} added={added} {...other}>
+            {added ? `Added ${valueAdd}` : `Add ${price}`}
+          </Button>
         </div>
-        <Button price={price} added={added} {...other}>
-          {added ? `Added ${valueAdd}` : `Add ${price}`}
-        </Button>
-      </div>
-      <Margin space={30} />
-    </>
-  );
-};
+        <Margin space={30} />
+      </>
+    );
+  }
+);
 
 const IndexPage = () => {
   const [data, total, totalPrice, showButton, goToPath] = useAction();
@@ -86,8 +80,9 @@ const IndexPage = () => {
         />
       </Head>
       <Header />
-      {data &&
-        data.map((row, index) => <Menu key={index} index={index} {...row} />)}
+      {data.map((row, index) => (
+        <Menu key={index} index={index} {...row} />
+      ))}
       {showButton && (
         <LargeButton
           icon

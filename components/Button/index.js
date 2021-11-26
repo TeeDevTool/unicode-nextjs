@@ -1,22 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Image from "next/image";
 
 // theme colors
 import colors from "styles/scss/_themes-vars.module.scss";
 
+import { Context } from "context";
+import { handleAdd, handleClear } from "config/action";
 import { add, clear, mouseOver, mouseOut } from "config/static";
 
 const Button = (props) => {
+  const { dispatch } = useContext(Context);
   const { paper, red, redHover, redLight, redLightHover, redDark } = colors;
-  const {
-    children: text,
-    added,
-    value,
-    index,
-    handleClear,
-    handleAdd,
-    price,
-  } = props;
+  const { children: text, added, value, index } = props;
 
   const [hover, setHover] = useState({ add: false, clear: false });
 
@@ -33,7 +28,14 @@ const Button = (props) => {
         <button
           onMouseOver={() => setHoverState(clear, mouseOver)}
           onMouseOut={() => setHoverState(clear, mouseOut)}
-          onClick={() => handleClear(index)}
+          onClick={() =>
+            dispatch({
+              type: handleClear,
+              payload: {
+                index,
+              },
+            })
+          }
           style={{
             backgroundColor: hover.clear ? redLightHover : redLight,
             color: redDark,
@@ -66,7 +68,15 @@ const Button = (props) => {
       <button
         onMouseOver={() => setHoverState(add, mouseOver)}
         onMouseOut={() => setHoverState(add, mouseOut)}
-        onClick={() => handleAdd(index, value, price)}
+        onClick={() =>
+          dispatch({
+            type: handleAdd,
+            payload: {
+              index,
+              value,
+            },
+          })
+        }
         style={{
           backgroundColor: added
             ? hover.add

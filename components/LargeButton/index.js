@@ -32,40 +32,42 @@ const LargeButton = (props) => {
       }}
     >
       {children}
-      <div
-        style={{
-          display: "inline-block",
-          position: "relative",
-          width: 30,
-          height: 30,
-          marginLeft: 4,
-        }}
-      >
-        <Image
-          className="cart"
-          src="/icons/cart.svg"
-          alt="cart"
-          width={28}
-          height={20}
-        />
+      {icon && (
         <div
           style={{
-            top: -4,
-            right: -4,
-            width: 14,
-            height: 14,
-            padding: 0,
-            alignContent: "center",
-            position: "absolute",
-            borderRadius: "50%",
-            backgroundColor: paper,
-            color: red,
-            fontSize: 9,
+            display: "inline-block",
+            position: "relative",
+            width: 30,
+            height: 30,
+            marginLeft: 4,
           }}
         >
-          <div style={{ paddingTop: 1, textAlign: "center" }}>{total}</div>
+          <Image
+            className="cart"
+            src="/icons/cart.svg"
+            alt="cart"
+            width={28}
+            height={20}
+          />
+          <div
+            style={{
+              top: -4,
+              right: -4,
+              width: 14,
+              height: 14,
+              padding: 0,
+              alignContent: "center",
+              position: "absolute",
+              borderRadius: "50%",
+              backgroundColor: paper,
+              color: red,
+              fontSize: 9,
+            }}
+          >
+            <div style={{ paddingTop: 1, textAlign: "center" }}>{total}</div>
+          </div>
         </div>
-      </div>
+      )}
     </button>
   );
 };

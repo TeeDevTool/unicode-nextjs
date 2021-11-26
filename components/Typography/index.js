@@ -18,7 +18,7 @@ const textType = {
   },
   title2: {
     fontSize: 20,
-    fontWeight: 500,
+    fontWeight: 600,
     color: black,
   },
   menu: {
@@ -46,15 +46,21 @@ const textType = {
     fontSize: 12,
     color: black,
   },
+  back: {
+    fontStyle: "normal",
+    fontWeight: 600,
+    fontSize: 14,
+    color: red,
+  },
   bill1: {
     fontStyle: "normal",
-    fontWeight: "normal",
+    fontWeight: 400,
     fontSize: 15,
     color: black,
   },
   bill2: {
     fontStyle: "normal",
-    fontWeight: "normal",
+    fontWeight: 400,
     fontSize: 15,
     color: grey,
   },
